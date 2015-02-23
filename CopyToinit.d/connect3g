@@ -9,4 +9,4 @@
 ### END INIT INFO
  
    echo "RUN CONNECT3G.PY!!!!!!!!!" 
-   sudo nohup python /home/pi/connector/connect3g.py &
+   sudo nohup python /home/pi/Rpi3gConnector/connect3g.py &
