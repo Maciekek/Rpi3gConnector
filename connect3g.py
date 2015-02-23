@@ -25,7 +25,7 @@ def getConnect():
 print "Hi"
 print "Ping run"
 
-cmdRun("/home/pi/Rpi3gConnector/ping.sh")
+cmdRun("sudo /home/pi/Rpi3gConnector/ping.sh")
 pingLog = open("/home/pi/Rpi3gConnector/ping.log", "r").read()
 
 connectStatus = re.search("1 received", pingLog);
@@ -33,7 +33,12 @@ connectStatus = re.search("1 received", pingLog);
 #print connectStatus.group()
 
 while (True):
-	getConnect()
+	if connectStatus:
+		print "Polaczenie aktywne"
+	else:
+		print "Brak polaczenia... Polaczenie zostanie wznowione"
+		getConnect()
+	
 	time.sleep(300)
 
 		
