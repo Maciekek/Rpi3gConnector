@@ -12,7 +12,7 @@ def cmdRun(cmd):
 	
 def getConnect():
 	print "Trwa laczenie"
-	connectedStatus = cmdRun("/home/pi/connect3g.sh");
+	connectedStatus = cmdRun("/home/pi/Rpi3gConnector/connect3g.sh");
 	cStatus = re.search("connected", connectedStatus)
 	if cStatus:
 		print "Polaczenie udane!"
@@ -24,8 +24,9 @@ def getConnect():
 
 print "Hi"
 print "Ping run"
-cmdRun("/home/pi/connector/ping.sh")
-pingLog = open("/home/pi/connector/ping.log", "r").read()
+
+cmdRun("/home/pi/Rpi3gConnector/ping.sh")
+pingLog = open("/home/pi/Rpi3gConnector/ping.log", "r").read()
 
 connectStatus = re.search("1 received", pingLog);
 #print pingLog

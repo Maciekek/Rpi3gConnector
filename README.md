@@ -10,6 +10,12 @@ Huawei  E1750
 ### Skrypt do ręcznego łączenia z siecią 3g 
 [Sakis3g](http://www.sakis3g.com/)
 
+## Umiejscowienie programu na dysku
+Najlepiej ściągnąć całe repozytorium do folderu "Rpi3gConnector", a ten folder wrzucić do "/home/pi"
+```
+	/home/pi/Rpi3gConnector
+```
+Inne ustawienie folderów uniemożliwi poprawne działanie
 
 ## Kilka słów o programie
 
