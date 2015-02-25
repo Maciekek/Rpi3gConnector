@@ -21,6 +21,8 @@ Inne ustawienie folderów uniemożliwi poprawne działanie
 
 Program napisany w Python`ie. Program sprawdza czy jest aktywne połączenie pingując stronę www. Jeśli odpowiedz jest pozytywna, program przechodzi w stan uśpienia na pewnie czas. Po upływie czasu program znowu odpytuje serwer czy jest on dla niego dostępny. Jeśli w tym czasie połączenie zostało zerwane, program podejmuję próbę ponownego połączenia, jeśli się uda, przechodzi w stan uśpienia, jeśli nie, próbuje ponownie się połączyć i tak w kółko. 
 
+Do programu dolozylem automatyczne logowanie do hamachi. Aby to dzialalo, hamachi musi byc skonfigurowane i musza byc dostepne polecenie "hamachi", "hamachi login"
+
 ## Uruchomienie
 Program można uruchomić ręcznie poprzez wydanie polecenia (w katalogu programu)
 
