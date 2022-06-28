@@ -1,66 +1,62 @@
 
 # Rraspberry Pi 3g connector
 
-Prosty programik do automatycznego łączenia i wznawiania połączenia z siecią 3g
+Simply tool to automatically connect and reconnect with 3g network.
+
 
 
 ### Modem
 Huawei  E1750
 
-### Skrypt do ręcznego łączenia z siecią 3g 
-[Sakis3g](http://www.sakis3g.com/)
+## How to run it?
+Clone repo (or download) this repo to `Rpi3gConnector` dir in `/home/pi`.
 
-## Umiejscowienie programu na dysku
-Najlepiej ściągnąć całe repozytorium do folderu "Rpi3gConnector", a ten folder wrzucić do "/home/pi"
 ```
 	/home/pi/Rpi3gConnector
 ```
-Inne ustawienie folderów uniemożliwi poprawne działanie
 
-## Kilka słów o programie
 
-Program napisany w Python`ie. Program sprawdza czy jest aktywne połączenie pingując stronę www. Jeśli odpowiedz jest pozytywna, program przechodzi w stan uśpienia na pewnie czas. Po upływie czasu program znowu odpytuje serwer czy jest on dla niego dostępny. Jeśli w tym czasie połączenie zostało zerwane, program podejmuję próbę ponownego połączenia, jeśli się uda, przechodzi w stan uśpienia, jeśli nie, próbuje ponownie się połączyć i tak w kółko. 
-
-Do programu dolozylem automatyczne logowanie do hamachi. Aby to dzialalo, hamachi musi byc skonfigurowane i musza byc dostepne polecenie "hamachi", "hamachi login"
-
-## Uruchomienie
-Program można uruchomić ręcznie poprzez wydanie polecenia (w katalogu programu)
+Start:
 
 ```sh
     sudo python connect3g.py
 ```
 
-## Dodanie programu do automatycznego uruchomienia
-Program może uruchamiać się automatycznie ze startem systemy, i działać aż do jego wyłączenia (odbywa się to w tle)
+## Description
+Program is written in Python. Program checks if connection is active by ping some www page. If response of the request is succesfully, program will sleep for a some time. After specific time, program will check again if connection is active. If response of the request is NOT succesfully, program will try to reconnect, and so on. 
 
 
-> ** Wystarczy wykonać te kroki:**
-> - Skopiować zawartość folderu ```CopyToinit.d``` do katalogu /etc/init.d
+There is also automatically login to hamachi network. Remember to configure hamachi on your own on your machine. Commands like: `hamachi` and `hamachi login` must be available. 
 
-    Polecenie: cp CopyToinit.d/connect3g /etc/init.d
 
-> - Dodać skrypt do update-rc
+
+## Autostart after reboot 
+Program can start automatically after system start.
+
+
+> ** Do this steps:**
+> - Copy content of the folder ```CopyToinit.d``` to `/etc/init.d`
+
+    Command: cp CopyToinit.d/connect3g /etc/init.d
+
+> - Add script to `update-rc`
     
-    Polecenie: sudo update-rc.d connect3g defaults
+    Command: sudo update-rc.d connect3g defaults
 
-> - W celu usunięcia skryptu z automatycznego uruchamiania
-    
-    Polecenie: sudo update-rc.d connect3g remove
-Tutaj uwaga na ścieżkie wskazującą w pliku connect3g na plik connect3g.py
-Domyślnie jest taka ścieżka: "/home/pi/Rpi3gConnector"
-I w tym pliku skrypt szuka pliku "connect3g.py"
+> - To remove it from autostart
+
+    Command: sudo update-rc.d connect3g remove
 
 
 
-### Testy
-Program został przetestowany organoleptycznie w taki sposób:
->- Udane połącznienie
->- Wyjęcie karty sim
->- Odłączenie modemu
->- Włożenie karty sim
->- Podłączenie modemu do Rpi
->- Udane ponownie połączenie po upływnie pewnej wartośći stałego czasu
+
+### How I test it 
+
+>- Connection succesfully 
+>- Eject sim card
+>- Eject modem 
+>- Insert sim cart
+>- Insert 3g modem to Rpi
+>- Wait until reconnect
 
 
-### Znane problemy
-Niestety kiedy Rpi jest połączone po 3g przez modem, wyjęcie modemu powoduje zawieszenie się systemu. Problem zaobserwowany z moim programem jak i bez niego. Póki co obejścia nie ma. Liczę na to, że swobodne rozłączenie z siecią 3g przebiega "łagodniej"
